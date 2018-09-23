@@ -8,10 +8,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,6 +23,7 @@ import android.widget.ListView;
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
+//	Global variable and it does not have to do anything with the instance you make
 	private EditText bodyText;
 	private ListView oldTweetsList;
 	
@@ -37,10 +40,9 @@ public class LonelyTwitterActivity extends Activity {
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
 				saveInFile(text, new Date(System.currentTimeMillis()));
-				finish();
+//				finish(); when you press finish, it closes the activity
 
 			}
 		});
@@ -54,6 +56,8 @@ public class LonelyTwitterActivity extends Activity {
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				R.layout.list_item, tweets);
 		oldTweetsList.setAdapter(adapter);
+
+
 	}
 
 	private String[] loadFromFile() {
@@ -86,10 +90,15 @@ public class LonelyTwitterActivity extends Activity {
 			fos.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        }
 	}
+    Button save = (Button) findViewById(R.id.save);
+    public void saveData(View view) {
+
+
+    }
 }

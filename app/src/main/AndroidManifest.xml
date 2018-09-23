@@ -16,6 +16,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <!--these two tells us that these two are our main activity-->
             </intent-filter>
         </activity>
     </application>
