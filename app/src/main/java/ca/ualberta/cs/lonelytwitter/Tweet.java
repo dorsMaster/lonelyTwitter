@@ -8,14 +8,27 @@ public abstract class Tweet {
     protected String message;
     protected Date date;
     private ArrayList<Mood> moods = new ArrayList<Mood>();
-    public Tweet(String message){
-        this.message = message;
-        this.date = new Date();
-    }
+
+    /**
+     * Constructor for Tweet with a string for the tweet text
+     * and a custom date of creation.
+     * @param message
+     * @param date
+     * @throws TweetTooLongException
+     */
     public Tweet(String message, Date date){
 //        overridden Tweet
         this.message = message;
         this.date = date;
+    }
+    /**
+     * Constructor for Tweet with a string for the tweet text
+     * @param message
+     * @throws TweetTooLongException
+     */
+    public Tweet(String message) throws TweetTooLongException {
+        this.setText(message);
+        this.date = new Date();
     }
     public void setMessage(String text) throws TweetTooLongException {
 //        to set the message
@@ -24,31 +37,50 @@ public abstract class Tweet {
         }
             this.message = text;
     }
-//    to set date
+    /**
+     * To set the date of the tweet
+     * @param date
+     */
     public void setDate(Date date) {
         this.date = date;
     }
-//    to get message
+    /**
+     * Returns the message of the tweet
+     */
     public String getMessage() {
         return this.message;
     }
-//    to get date
-    public Date getDate() {
+    /**
+     * Returns the date of the tweet
+     * @reutn date
+     */    public Date getDate() {
         return date;
     }
-//    to add a mood
+    /**
+     * To add a mood
+     * @param  mood
+     */
     public void addMood(Mood mood){
         moods.add(mood);
     }
-//    to remove a mood
+    /**
+     * Removes a mood
+     */
     public void removeMood(Mood mood){
         moods.remove(mood);
     }
-//    initializing an array of moods
+    /**
+     * returns mood
+     * @return mood
+     */
     public ArrayList<Mood> getMoods() {
         return moods;
     }
 //    also the function is  important that is ab stract so each  class can define their own version
+    /**
+     * also the function is  important that is ab stract so each  class can define their own version
+     * @return isImportant
+     */
     public abstract boolean isImportant();
 
     @Override
@@ -57,4 +89,16 @@ public abstract class Tweet {
     }
 
     public abstract boolean isImportnat();
+    /**
+     * Set the string of the message
+     * @param message
+     * @throws TweetTooLongException
+     */
+    public void setText(String message) throws TweetTooLongException {
+        if (message.length() <= 140) {
+            this.message = message;
+        } else {
+            throw new TweetTooLongException();
+        }
+    }
 }
