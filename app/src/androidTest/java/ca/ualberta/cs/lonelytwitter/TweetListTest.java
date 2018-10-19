@@ -58,17 +58,13 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
     public void testGetTweets() {
         TweetList tweets = new TweetList();
         Tweet tweet1 = new NormalTweet("Test");
-        tweet1.setDate(new Date(1000));
+        tweet1.setDate(new Date(2017));
         Tweet tweet2 = new NormalTweet("Test");
-        tweet2.setDate(new Date(2000));
-        Tweet tweet3 = new NormalTweet("Test");
-        tweet3.setDate(new Date(3000));
+        tweet2.setDate(new Date(2018));
         tweets.addTweet(tweet2);
-        tweets.addTweet(tweet3);
         tweets.addTweet(tweet1);
         ArrayList<Tweet> sortedTweets = tweets.getTweets();
         assertTrue(sortedTweets.get(0).getDate().compareTo(sortedTweets.get(1).getDate()) < 0);
-        assertTrue(sortedTweets.get(1).getDate().compareTo(sortedTweets.get(2).getDate()) < 0);
     }
 
 
