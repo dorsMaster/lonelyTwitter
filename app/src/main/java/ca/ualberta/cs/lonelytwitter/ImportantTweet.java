@@ -1,4 +1,5 @@
 package ca.ualberta.cs.lonelytwitter;
+<<<<<<< HEAD
 //an abstract class of important tweet, where the isImportant function can be overwritten
 
 
@@ -33,4 +34,21 @@ public abstract class ImportantTweet extends Tweet {
     }
 
 
+=======
+
+/**
+ * Created by watts1 on 9/13/16.
+ */
+public class ImportantTweet extends Tweet {
+
+    public ImportantTweet(String message){
+        super(message);
+    }
+
+    @Override
+    public Boolean isImportant(){
+        return Boolean.TRUE;
+    }
+
+>>>>>>> junit
 }
